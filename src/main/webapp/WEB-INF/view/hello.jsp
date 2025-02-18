@@ -15,7 +15,7 @@ rel="stylesheet">
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></
  script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
-<link href="/css/demo.css" rel="stylesheet">
+// <link href="/css/demo.css" rel="stylesheet">
 </head>
 <body>
     Today's date: <%= (new java.util.Date()).toLocaleString()%>
@@ -23,6 +23,8 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.j
         <c:out value="${thuy}" /> 
         ${thuy} 
     </h1>
-    <button>Submit</button>
+    <button class="btn btn-success">Submit</button>
+
+   
 </body>
 </html>

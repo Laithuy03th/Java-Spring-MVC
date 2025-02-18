@@ -21,6 +21,14 @@ public class UserController {
         model.addAttribute("thuy", test);
         return "hello";
     }
+
+    @GetMapping("/admin/user")
+    public String getUserPage(Model model) {
+
+        String test = this.userService.handleHello();
+        model.addAttribute("viet", test);
+        return "admin/user/create";
+    }
 }
 
 // troller

@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.services.UserService;
 
-@RestController
+@Controller
 public class UserController {
 
     private UserService userService;
@@ -17,9 +15,27 @@ public class UserController {
     }
 
     @GetMapping("/")
+    public String getHomePage(Model model) {
 
-    public String getHomPage() {
-        return this.userService.handleHello();
+        String test = this.userService.handleHello();
+        model.addAttribute("thuy", test);
+        return "hello";
     }
-
 }
+
+// troller
+// ic class UserController {
+
+// private UserService userService;
+
+// public UserController(UserService userService) {
+// this.userService = userService;
+// }
+
+// @GetMapping("/")
+
+// public String getHomPage() {
+// return this.userService.handleHello();
+// }
+
+// }

@@ -41,6 +41,9 @@ public class UserController {
     // }
     @GetMapping("/admin/user")
     public String getUserTable(Model model) {
+        List<User> usersTable = this.userService.getAllUser();
+        model.addAttribute("users", usersTable);
+        System.out.println(">>> check users: " + usersTable);
 
         return "admin/user/table";
     }

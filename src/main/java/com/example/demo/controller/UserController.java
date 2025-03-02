@@ -42,7 +42,7 @@ public class UserController {
     @GetMapping("/admin/user")
     public String getUserTable(Model model) {
         List<User> usersTable = this.userService.getAllUser();
-        model.addAttribute("users", usersTable);
+        model.addAttribute("users1", usersTable);
         System.out.println(">>> check users: " + usersTable);
 
         return "admin/user/table";
@@ -60,7 +60,7 @@ public class UserController {
         System.out.println("run here" + laithithuy);
         this.userService.handleSaveUser(laithithuy);
 
-        return "admin/user/create";
+        return "redirect:/admin/user";
     }
 
 }

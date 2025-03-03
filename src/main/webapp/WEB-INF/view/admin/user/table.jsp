@@ -42,7 +42,8 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.j
         <th>${user.id}</th>
         <td>${user.email}</td>
         <td>${user.fullName}</td>
-        <td> <button class="btn btn-primary">View</button>
+        <td> 
+          <a href="/admin/user/${user.id}" class="btn btn-primary">View</a>
          <button class="btn btn-secondary">Update</button>
          <button class="btn btn-danger">Delete</button></td>
       </tr>

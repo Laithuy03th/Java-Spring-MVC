@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepository;
@@ -46,6 +47,14 @@ public class UserController {
         System.out.println(">>> check users: " + usersTable);
 
         return "admin/user/table";
+    }
+
+    @GetMapping("/admin/user/{id}")
+    public String getUserTablePage(Model model, @PathVariable long id) {
+
+        System.out.println("check id = " + id);
+        model.addAttribute("id", id);
+        return "admin/user/showUser";
     }
 
     @GetMapping("/admin/user/create")

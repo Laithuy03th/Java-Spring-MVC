@@ -51,9 +51,11 @@ public class UserController {
 
     @GetMapping("/admin/user/{id}")
     public String getUserTablePage(Model model, @PathVariable long id) {
-
-        System.out.println("check id = " + id);
+        User user = this.userService.getUserById(id);
+        System.out.println("check id =  " + id);
+        model.addAttribute("user", user);
         model.addAttribute("id", id);
+
         return "admin/user/showUser";
     }
 

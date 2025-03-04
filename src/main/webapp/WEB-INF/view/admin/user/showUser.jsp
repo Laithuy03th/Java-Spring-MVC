@@ -32,19 +32,21 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.j
 User information
 </div> 
 <ul class="list-group list-group-flush"> 
-<li class="list-group-item">ID : 1</li> 
-<li class="list-group-item">Email : -</li> 
-<li class="list-group-item">FullName : -</li> 
-<li class="list-group-item">Address : -</li> 
+<li class="list-group-item">ID : ${id}</li> 
+<li class="list-group-item">Email : ${user.email}</li> 
+<li class="list-group-item">FullName : ${user.fullName}</li> 
+<li class="list-group-item">Address : ${user.address}</li> 
 </ul> 
 </div> 
     </div>
   
- 
-  
+<div>
+    <hr /></div>
+    <div><a href="/admin/user" class="btn btn-success" role="button">Back</a></div>
    
 
 </div>
+
 
 
 

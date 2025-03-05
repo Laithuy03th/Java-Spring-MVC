@@ -14,6 +14,8 @@ import com.example.demo.services.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class UserController {
@@ -79,6 +81,36 @@ public class UserController {
         User currentUser = this.userService.getUserById(id);
         model.addAttribute("newUser", currentUser);
         return "admin/user/update";
+    }
+
+    @PostMapping("admin/user/update")
+    public String postUserUpdate(Model model, @ModelAttribute("newUser") User laithithuy) {
+        User currentUser = this.userService.getUserById(laithithuy.getId());
+        if (currentUser != null) {
+            currentUser.setAddress(laithithuy.getAddress());
+            currentUser.setFullName(laithithuy.getFullName());
+            currentUser.setPhone(laithithuy.getPhone());
+            this.userService.handleSaveUser(currentUser);
+
+        }
+        return "redirect:/admin/user";
+    }
+
+    @GetMapping("admin/user/delete/{id}")
+    public String getUserDeletePage(Model model, @PathVariable long id) {
+
+        model.addAttribute("id", id);
+
+        // User user = new User();
+        // user.setId(id);
+        model.addAttribute("newUser", new User());
+        return "admin/user/delete";
+    }
+
+    @PostMapping("admin/user/delete")
+    public String postUserDelete(Model model, @ModelAttribute("newUser") User laithithuy) {
+        this.userService.deleteUserById(laithithuy.getId());
+        return "redirect:/admin/user";
     }
 
 }

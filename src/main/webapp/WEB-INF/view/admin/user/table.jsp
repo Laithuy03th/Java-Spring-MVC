@@ -45,7 +45,7 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.j
         <td> 
           <a href="/admin/user/${user.id}" class="btn btn-primary">View</a>
           <a href="/admin/user/update/${user.id}" class="btn btn-secondary">Update</a>
-         <button class="btn btn-danger">Delete</button></td>
+         <a href="/admin/user/delete/${user.id}" class="btn btn-danger">Delete</a></td>
       </tr>
       </c:forEach>
       <tr>

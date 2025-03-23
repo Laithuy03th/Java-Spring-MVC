@@ -1,9 +1,13 @@
-package com.example.demo.controller;
+package com.example.demo.controller.admin;
 
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,9 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.example.demo.domain.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.services.UserService;
+import com.example.demo.services.UploadService;
+
+import jakarta.servlet.ServletContext;
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -21,9 +31,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserController {
 
     private final UserService userService;
+    private final UploadService uploadService;
 
-    public UserController(UserService userService) {
+    private PasswordEncoder passwordEncoder;
+
+    public UserController(UserService userService, UploadService uploadService,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
@@ -48,7 +64,7 @@ public class UserController {
         model.addAttribute("users1", usersTable);
         System.out.println(">>> check users: " + usersTable);
 
-        return "admin/user/table";
+        return "admin/user/show";
     }
 
     @GetMapping("/admin/user/{id}")
@@ -58,7 +74,7 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("id", id);
 
-        return "admin/user/showUser";
+        return "admin/user/detail";
     }
 
     @GetMapping("/admin/user/create")
@@ -68,9 +84,27 @@ public class UserController {
         return "admin/user/create";
     }
 
-    @RequestMapping(value = "admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User laithithuy) {
-        System.out.println("run here" + laithithuy);
+    @PostMapping(value = "admin/user/create")
+    public String createUserPage(Model model, @ModelAttribute("newUser") @Valid User laithithuy,
+            BindingResult bindingResult, @RequestParam("laithuyFile") MultipartFile file) {
+
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(">>>> check error: " + error.getField() + " - " + error.getDefaultMessage());
+        }
+
+        // validate
+        if (bindingResult.hasErrors()) {
+            return "admin/user/create";
+        }
+
+        //
+
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        String hashPassword = this.passwordEncoder.encode(laithithuy.getPassword());
+        laithithuy.setAvatar(avatar);
+        laithithuy.setPassword(hashPassword);
+        laithithuy.setRole(this.userService.getRoleByName(laithithuy.getRole().getName()));
         this.userService.handleSaveUser(laithithuy);
 
         return "redirect:/admin/user";

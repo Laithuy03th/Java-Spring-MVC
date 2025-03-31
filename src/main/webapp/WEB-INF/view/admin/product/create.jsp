@@ -63,6 +63,7 @@
                      </c:set> 
                       <label class="form-label">Price :</label>
                       <form:input type="text" class="form-control ${not empty errorPrice ? 'is-invalid':''}" path="price"/>
+                      ${errorPrice}
                     </div>
                         </div>
                         <div class="row g-3">
@@ -72,6 +73,7 @@
                      </c:set> 
                       <label class="form-label">Short description :</label>
                       <form:input type="text" class="form-control ${not empty errorShortDesc ? 'is-invalid':''}" path="shortDesc"/>
+                      ${errorShortDesc}
                     </div>
                   
                     <div class="col">
@@ -80,6 +82,7 @@
                      </c:set> 
                       <label class="form-label">Quantity :</label>
                       <form:input type="text" class="form-control ${not empty errorQuantity ? 'is-invalid':''}" path="quantity"/>
+                      ${errorQuantity}
                     </div>
                         </div>
                     <div class="mb-3">
@@ -87,7 +90,8 @@
                         <form:errors path="detailDesc" cssClass = "invalid-feedback" /> 
                      </c:set> 
                       <label class="form-label">Detail description :</label>
-                      <form:input type="text" class="form-control ${not empty errorDetailDesc ? 'is-invalid':''}" path="detailDesc" />
+                      <form:textarea type="text" class="form-control ${not empty errorDetailDesc ? 'is-invalid':''}" path="detailDesc" />
+                      ${errorDetailDesc}
                     </div>
                     <div class="row g-3">
                     <div class="col">

@@ -2,6 +2,9 @@ package com.example.demo.domain;
 
 import java.util.List;
 
+import com.example.demo.services.validator.StrongPassword;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
@@ -29,17 +33,16 @@ public class User {
     private String email;
 
     @NotNull
-    @Size(min = 8, message = "password phải tối thiểu 8 kí tự")
+    @Size(min = 8)
+    @StrongPassword(message = "Mật khẩu phải có ít nhất 8 kí tự, 1 chữ hoa, 1 chữ thường, 1 chữu số và 1 kí tự đặc biêt")
     private String password;
 
     @NotNull
     @Size(min = 3, message = "FullName phải tối thiểu 3 kí tự")
     private String fullName;
 
-    @NotNull
     private String address;
 
-    @NotNull
     private String phone;
 
     private String avatar;
@@ -51,11 +54,22 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Order> orders;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Cart cart;
+
     public User() {
 
     }
 
-    public User(long id, String password, String fullName, String address, String phone, String email) {
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public User(long id, String password, String fullName, String address, String phone, String email, String avatar) {
         this.id = id;
         this.password = password;
         this.fullName = fullName;

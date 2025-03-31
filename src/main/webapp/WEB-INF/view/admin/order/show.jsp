@@ -1,5 +1,8 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,7 +28,41 @@
                             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                             <li class="breadcrumb-item active">Orders</li>
                         </ol>
-                        <div>table order</div>
+                        <table class="table table-hover table-border ">
+                            <thead>
+                              <tr>
+                                <th scope="col">Total Price</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Status</th>
+                                
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <c:forEach var="order" items="${orders}"> 
+                              <tr>
+                               <td>
+                                ${order.totalPrice}
+                               </td>
+                               
+                               
+                                <td><p>
+                                    Admin full
+                                </p></td>
+                                
+                               
+                                <td><p>PENDING</p></td>
+                                
+                                <td> 
+                                  <a href="/admin/order/${order.id}" class="btn btn-primary">View</a>
+                                  <a href="/admin/order/update/${order.id}" class="btn btn-secondary">Update</a>
+                                 <a href="/admin/order/delete/${order.id}" class="btn btn-danger">Delete</a></td>
+                              </tr>
+                              </c:forEach>
+                              
+                            
+                            </tbody>
+                          </table>
                     </div>
                 </main>
                 <jsp:include page="../layout/footer.jsp"/>

@@ -43,14 +43,15 @@ public class UserController {
 
     }
 
-    @GetMapping("/")
-    public String getHomePage(Model model) {
-        List<User> arrUsers = this.userService.getAllUser();
-        List<User> users = this.userService.getAllUserByEmailAndAddress("1@gmail.com", "hanoi");
-        System.out.println(arrUsers + "and" + users);
-        model.addAttribute("thuy", "test");
-        return "hello";
-    }
+    // @GetMapping("/")
+    // public String getHomePage(Model model) {
+    // List<User> arrUsers = this.userService.getAllUser();
+    // List<User> users =
+    // this.userService.getAllUserByEmailAndAddress("1@gmail.com", "hanoi");
+    // System.out.println(arrUsers + "and" + users);
+    // model.addAttribute("thuy", "test");
+    // return "hello";
+    // }
 
     // @GetMapping("/admin/user")
     // public String getUserPage(Model model) {

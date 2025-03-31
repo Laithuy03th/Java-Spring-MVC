@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
 
 <html lang="en">
@@ -110,35 +111,55 @@
                         <div class="row g-4">
                             <div class="col-lg-12">
                                 <div class="row g-4">
+
+                                    <c:forEach var="product" items="${products}"> 
+                                        
+
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="/client/img/fruite-item-5.png" class="img-fluid w-100 rounded-top" alt="">
+                                                <img src="/images/product/${product.image}" 
+                                                class="img-fluid w-100 rounded-top" 
+                                                style="width: 306px; height: 214px; object-fit: cover;" 
+                                                alt="">
+                                           
+
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
-                                                <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                <h4>
+                                                    <a href="/product/${product.id}">
+                                                        ${product.name}
+
+                                                    </a>
+                                                    
+                                                </h4>
+                                                <p> ${product.shortDesc}</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">${product.price}$</p>
+                                                    <form action="/add-product-to-cart/${product.id}" method="post">
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                                    </form>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
+
+
+                                    <!-- <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
                                                 <img src="/client/img/fruite-item-5.png" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
+                                                <h4>Laptop Dell XPS 13 9340 Ultra 7 155</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                    75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -151,28 +172,28 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Raspberries</h4>
+                                                <h4>Laptop Acer Gaming Predator</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                   75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 col-xl-3">
+                                    </div> -->
+                                    <!-- <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
                                                 <img src="/client/img/fruite-item-4.png" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Apricots</h4>
+                                                <h4>Macbook Air M3 15</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                   75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -185,11 +206,11 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Banana</h4>
+                                                <h4>MacBook Pro AI</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                    75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -202,11 +223,11 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Oranges</h4>
+                                                <h4>Laptop Lenovo Gaming Legion</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                               75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -219,11 +240,11 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Raspberries</h4>
+                                                <h4>Laptop Acer Gaming Predator</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                    75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -236,16 +257,19 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
+                                                <h4>Laptop Dell XPS 13 9340 Ultra 7 155</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                       75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
+                                 
+                                    </c:forEach>
+                                
                                 </div>
                             </div>
                         </div>
@@ -261,11 +285,11 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Grapes</h4>
+                                                <h4>Laptop Dell XPS 13 9340 Ultra 7 155</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                      75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -278,11 +302,11 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Raspberries</h4>
+                                                <h4>Laptop Acer Gaming Predator</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                    75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -305,9 +329,9 @@
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>Apple</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                 75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -322,9 +346,9 @@
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>Dell</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                   75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -347,9 +371,9 @@
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>Hp</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                        75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -364,9 +388,9 @@
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>Acer</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                   75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -387,11 +411,11 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Banana</h4>
+                                                <h4>MacBook Pro AI</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                 75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -404,11 +428,11 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Raspberries</h4>
+                                                <h4>Laptop Acer Gaming Predator</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                     75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
@@ -421,11 +445,11 @@
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h4>Oranges</h4>
+                                                <h4>Laptop Lenovo Gaming Legion</h4>
                                                 <p> Laptop Dell XPS 14 9440 71054773 OLED (Ultra 7 155H/ 64GB/ 1TB SSD/ RTX 4050 6GB/ 14.5inch 3.2K Touch/ Win 11/ Office/ Black/ 1Y)
-75.490.000đ</p>
+                                                 75.490.000đ</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">50Tr</p>
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
